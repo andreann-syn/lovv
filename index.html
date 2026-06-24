@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<title>Happy Birthday ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#ffd6e7,#ffe9f2);
+    overflow-x:hidden;
+    text-align:center;
+}
+
+.screen{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.hidden{
+    display:none;
+}
+
+h1{
+    color:#ff4f8b;
+    margin-bottom:20px;
+}
+
+h2{
+    color:#ff4f8b;
+    margin-bottom:20px;
+}
+
+button{
+    padding:15px 30px;
+    border:none;
+    border-radius:30px;
+    background:#ff4f8b;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    width:90%;
+    max-width:700px;
+    margin:20px auto;
+}
+
+.gallery-grid img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:15px;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.gallery-grid img:hover{
+    transform:scale(1.05);
+}
+
+.gallery{
+    width:90%;
+    max-width:350px;
+    margin:20px auto;
+}
+
+.gallery img{
+    width:100%;
+    height:400px;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
+}
+
+.message{
+    max-width:700px;
+    line-height:1.8;
+    color:#444;
+    padding:20px;
+}
+
+.popup{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.popup img{
+    max-width:90%;
+    max-height:90%;
+    border-radius:15px;
+}
+
+.heart{
+    position:fixed;
+    top:-20px;
+    font-size:20px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+    }
+}
+
+footer{
+    margin-top:40px;
+    color:#ff4f8b;
+    font-weight:bold;
+}
+
+@media(max-width:600px){
+
+    .gallery-grid{
+        grid-template-columns:1fr;
+    }
+
+    .gallery-grid img{
+        height:250px;
+    }
+
+    .gallery img{
+        height:300px;
+    }
+}
+
+h1{
+    font-family:'Cookie', cursive;
+    font-size:60px;
+}
+
+.message,
+.message p,
+.message h2{
+    font-family:'Handlee', cursive !important;
+}
+
+.form-box{
+    width:280px;
+    margin:20px auto;
+    background:rgba(255,255,255,.5);
+    backdrop-filter:blur(10px);
+    padding:15px;
+    border-radius:20px;
+}
+
+.form-box h3{
+    margin-bottom:10px;
+    color:#ff4f8b;
+}
+
+.form-box textarea{
+    width:100%;
+    height:90px;
+    padding:10px;
+    border:none;
+    border-radius:12px;
+    resize:none;
+    outline:none;
+}
+
+.form-box button{
+    width:100%;
+    margin-top:10px;
+    padding:10px;
+    border:none;
+    border-radius:12px;
+    background:#ff4f8b;
+    color:white;
+    cursor:pointer;
+}
+
+h2{
+    font-family:'Dancing Script', cursive;
+    font-size:40px;
+}
+
+.video-akhir{
+    width: 90%;
+    max-width: 300px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
+</style>
+</head>
+<body>
+
+<!-- HALAMAN 1 -->
+
+<div class="screen" id="welcome">
+    <h1> Ada sesuatu buat kamu 
+        💌
+    </h1>
+
+    <button onclick="openGallery()">
+        Buka Hadiahnya 🎁
+    </button>
+</div>
+
+<!-- HALAMAN 2 -->
+
+<div class="screen hidden" id="galleryPage">
+
+    <h1> Ini Capa Ini Gemas Sekali 
+        📸💖
+    </h1>
+
+    <div class="gallery-grid">
+
+        <img src="images/foto1.jpg">
+        <img src="images/foto2.jpg">
+        <img src="images/foto3.jpeg">
+        <img src="images/foto4.jpeg">
+    </div>
+    <button onclick="openText()">
+        Coba Klik Deh 💖
+    </button>
+</div>
+<!-- HALAMAN 3 -->
+ <div class="screen hidden" id="textPage">
+    <h2>Tapi Bentar Hari Ini Hari Apa Nyakk??</h2>
+    <button onclick="openTebak()">
+        Tau Ga??
+    </button>
+ </div>
+ <!-- HALAMAN 4 -->
+  <div class="screen hidden" id="tebakPage">
+    <h2>Coba Tebak Hari Ini Ada Apa Yak??</h2>
+    <form id="myForm">
+    <input type="text" id="nama" placeholder="Tebak...">
+    <button type="submit">
+        Kirim ❤️
+    </button>
+</form>
+<p id="hasil"></p>
+    <button onclick="openBener()">
+        Next Ya Kalo Udah Nebak
+    </button>
+  </div>
+  <!-- HALAMAN 5 -->
+   <div class="screen hidden" id="benerPage">
+    <h2>WIHH BETULL HARI INI KAN KAMU ULTAHH!!</h2>
+    
+    <button onclick="openBirthday()">
+        Next Lagi Sayang
+    </button>
+   </div>
+
+<!-- HALAMAN 6 -->
+
+<div class="screen hidden" id="birthdayPage">
+
+    <h1>Selamat Ulang Tahun Sayang 
+        🎉🎉
+    </h1>
+
+    <div class="gallery">
+        <img src="images/foto5.jpeg">
+    </div>
+
+    <div class="message">
+
+        <p>
+        Hari ini adalah hari spesial karena seseorang yang sangat berarti
+        buat aku lahir ke dunia. ❤️
+        </p>
+
+        <br>
+
+        <p>
+        Terima kasih sudah hadir dan menjadi bagian dari hidup aku.
+        Semoga semua impian kamu tercapai, di terima di sekolah yang kamu mau.
+        Selalu sehat, selalu bahagia, dan selalu dikelilingi hal-hal baik.
+        </p>
+
+        <br>
+
+        <p>
+        Aku bersyukur bisa kenal kamu dan punya banyak banyakkk banget
+        kenangan indah bareng kamu. Mungkin kalo kita tidak bertemu waktu itu
+        Hidup ku kerasa biasa saja, tidak ada yang istimewa. 
+        Dan Semoga di umur yang baru ini semua hal baik
+        datang menghampiri kamu. 💕
+        </p>
+
+        <br>
+
+
+        <h2>I Love You ❤️</h2>
+
+    </div>
+
+    <footer>
+        Dibuat khusus untuk kamu 💖
+    </footer>
+
+    <button onclick="openHarapan()">
+        Ada Lagi Yang
+    </button>
+</div>
+
+<!-- HALAMAN 7 -->
+ <div class="screen hidden" id="harapanPage">
+    <h1> Aku Bangga Sama Kamu </h1>
+<div class="message">
+    <p>
+        Kalo Mau Tulis Harapan Kamu Buat Diri Kamu
+    </p>
+    
+    <p>
+        Tenang Cuma Kamu Yang Tau Kok
+    </p>
+</div>
+
+    <div class="form-box">
+    <h3>🌷 Harapan Kamu </h3>
+
+    <textarea
+    placeholder="Tulis harapan, impian, atau hal yang ingin kamu capai di umur yang baru... 💖">
+    </textarea>
+
+    <button type="button" onclick="simpanHarapan()">
+    Simpan ✨
+</button>
+
+    <p id="hasilharapan"></p>
+
+</div>
+   <button onclick="openLast()">
+    Last Seng
+   </button>
+ </div>
+
+ <!-- HALAMAN 8 -->
+  <div class="screen hidden" id="mePage">
+    <h1>From Me For U</h1>
+
+    <div class="message">
+        <p>
+        Apapun Harapan mu itu aku harap itu yang terbaik untukmu dan aku selalu mendoakan nya untukmu 
+    </p>
+
+    <br>
+
+    <p>
+        Maaf Aku Tidak Bisa Ngasih Apa Apa
+    </p>
+
+    <br>
+
+    <p>
+        Seperti Cowo Cowo Lain Diluar Sana Disaat Cewe nya Ulang Tahun
+    </p>
+
+    <br>
+
+    <p>
+        Aku Cuma Bisa Buatin Ini Buat Kamu
+    </p>
+    
+    <br>
+
+    <p>
+       Dan Semoga Kamu Suka Yahh Hihi 
+    </p>
+
+    <br>
+
+    <p>
+        Lain Kali Kita Rayain Bareng Bareng Yahh Sayanggg, Lovee Youuu💖💖
+    </p>
+    <button onclick="openJJ()">
+        Ini Beneran Last Wkwk
+    </button>
+    </div>
+</div>
+
+<!-- HALAMAN 9 -->
+ <div class="screen hidden" id="jjPage">
+    <h2>JJ SEK SENGGG WKWKWK</h2>
+    <video id="videoAkhir" controls class="video-akhir">
+    <source src="video/video1.mp4" type="video/mp4">
+</video>
+ </div>
+
+<!-- POPUP FOTO -->
+
+<div id="popup" class="popup">
+    <img id="popup-img">
+</div>
+
+<!-- MUSIC -->
+
+<audio id="music" loop>
+    <source src="music/lagu1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+function openGallery(){
+
+    document.getElementById("welcome").classList.add("hidden");
+    document.getElementById("galleryPage").classList.remove("hidden");
+
+    document.getElementById("music").play();
+
+}
+
+function openText(){
+
+    document.getElementById("galleryPage").classList.add("hidden");
+    document.getElementById("textPage").classList.remove("hidden");
+
+    createHearts();
+
+}
+
+function openTebak(){
+
+    document.getElementById("textPage").classList.add("hidden");
+    document.getElementById("tebakPage").classList.remove("hidden");
+
+    createHearts();
+
+}
+
+function openBener(){
+
+    document.getElementById("tebakPage").classList.add("hidden");
+    document.getElementById("benerPage").classList.remove("hidden");
+
+    createHearts();
+
+}
+function openBirthday(){
+
+    document.getElementById("benerPage").classList.add("hidden");
+    document.getElementById("birthdayPage").classList.remove("hidden");
+
+    createHearts();
+
+}
+function openHarapan(){
+
+    document.getElementById("birthdayPage").classList.add("hidden");
+    document.getElementById("harapanPage").classList.remove("hidden");
+
+    createHearts();
+
+}
+function openLast(){
+
+    document.getElementById("harapanPage").classList.add("hidden");
+    document.getElementById("mePage").classList.remove("hidden");
+
+    createHearts();
+
+}
+function openJJ(){
+
+    document.getElementById("mePage").classList.add("hidden");
+    document.getElementById("jjPage").classList.remove("hidden");
+
+     // matiin lagu background
+    const music = document.getElementById("music");
+    music.pause();
+    music.currentTime = 0;
+
+    // putar video
+    const video = document.getElementById("videoAkhir");
+    video.play();
+
+
+    createHearts();
+
+}
+
+/* SLIDESHOW */
+const photos = [
+    "foto1.jpg",
+    "foto2.jpg",
+    "foto3.jpg",
+    "foto4.jpg",
+    "foto5.jpg"
+];
+
+let current = 0;
+
+setInterval(() => {
+
+    const slider = document.getElementById("slider");
+
+    if(slider){
+
+        current++;
+
+        if(current >= photos.length){
+            current = 0;
+        }
+
+        slider.src = photos[current];
+    }
+
+},3000);
+
+/* HEART */
+
+let heartStarted = false;
+
+function createHearts(){
+
+    if(heartStarted) return;
+
+    heartStarted = true;
+
+    setInterval(() => {
+
+        const heart = document.createElement("div");
+
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.animationDuration =
+        (Math.random()*3+3)+"s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },6000);
+
+    },300);
+
+}
+
+/* POPUP FOTO */
+
+const popup = document.getElementById("popup");
+const popupImg = document.getElementById("popup-img");
+
+document.querySelectorAll(".gallery-grid img")
+.forEach(img => {
+
+    img.addEventListener("click", () => {
+
+        popup.style.display = "flex";
+        popupImg.src = img.src;
+
+    });
+
+});
+
+popup.addEventListener("click", () => {
+
+    popup.style.display = "none";
+
+});
+
+document.getElementById("myForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault(); // <- mencegah reload
+
+    const nama =
+    document.getElementById("nama").value;
+
+    document.getElementById("hasil").innerHTML =
+    "Bener Ga Ya??" + "🫣";
+
+});
+
+function simpanHarapan(){
+
+    document.getElementById("hasilharapan").innerHTML =
+    "💖 Semoga semua harapan kamu tahun ini tercapai yaa 💖";
+
+}
+
+</script>
+
+</body>
+</html>
